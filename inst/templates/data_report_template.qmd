@@ -13,7 +13,34 @@ library(readr)
 library(here)
 ```
 
-```{r}
+```{r get-data}
 
+# files
+files_to_read <- list.files(here("data"))
+df_names <- map_chr(files_to_read, .f = function(x) {stringr::str_remove(x, ".csv")})
+
+# read in files
+data_files <- map(files_to_read, .f = function(x) read_csv(here("data", x))) %>% 
+  set_names(df_names)
 ```
+
+
+## Cohort
+
+<!-- Describe cohort of patients. -->
+
+
+## Data sets
+
+<!-- Describe datasets included. -->
+
+
+#### The Data Science Lab
+
+This report was written at the FHCC Data Science Lab.
+
+* Visit our [website](https://hutchdatascience.org).
+* Subscribe to our [newsletter](https://fhdata.substack.com).
+* Join us on [Slack](https://hutchdatascience.org/contact/). Be sure to join the #clinical-data Slack channel!
+
 
