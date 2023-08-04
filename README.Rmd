@@ -40,13 +40,12 @@ You can install the development version of datatriage like so:
 ```
 
 - Fill out documents:
-  - `compliance_checklist.md`
-  - `data_plan.md`
-  - `data_report.md`
+  - `compliance_checklist.docx`
+  - `data_plan.docx`
   
 - Begin query using `query_template.md`
 
-- Summarize results in `data_report.md`
+- Summarize results in `data_report_template.md`
 
 - Code review
 
