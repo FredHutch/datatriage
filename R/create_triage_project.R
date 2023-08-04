@@ -1,4 +1,12 @@
 
+#' Create Data Triage Project
+#'
+#' @param path where to create the project
+#'
+#' @return
+#' @export
+#'
+#' @examples
 create_triage_project <- function(path) {
 
   # create a project
