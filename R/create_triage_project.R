@@ -1,0 +1,32 @@
+
+create_triage_project <- function(path) {
+
+  # create a project
+  usethis::create_project(path = path)
+
+  # must set active project otherwise it is <no active project>
+  usethis::proj_set(path = path)
+
+  # create directory for shared data (where OneDrive permissions given to data requestor)
+  repo_name <- basename(path)
+  usethis::use_directory(glue::glue("{repo_name}_data_shared"))
+
+  # project directories
+  usethis::use_directory("data")
+  usethis::use_directory("code")
+  usethis::use_directory("docs")
+
+  # templates
+  usethis::use_template(
+    template = "database_query_template.qmd",
+    save_as = "code/database_query.qmd",
+    package = "datatriage"
+  )
+
+  usethis::use_template(
+    template = "data_report_template.qmd",
+    save_as = "code/data_report.qmd",
+    package = "datatriage"
+  )
+
+}
