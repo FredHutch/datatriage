@@ -1,0 +1,85 @@
+---
+title: "Database query for: [request name and ID]"
+author: "Your name here"
+date: "`r Sys.Date()`"
+format: html
+editor: source
+---
+
+```{r setup}
+library(tidyverse)
+library(readr)
+library(here)
+```
+
+```{r connections}
+
+caisis <- DBI::dbConnect(
+  odbc::odbc(),
+  Driver   = "SQL Server", # or use "ODBC Driver 18 for SQL Server" for mac
+  Server   = "CONGO-H\\H",
+  Database = "CaisisProd",
+  Trusted_Connection = "yes"
+  )
+
+hidra <- DBI::dbConnect(
+  odbc::odbc(),
+  Driver   = "SQL Server",
+  Server   = "CONGO-H\\H",
+  Database = "ccod_rep_prod",
+  trusted_connection = "yes"
+  )
+
+amalga <- DBI::dbConnect(
+  odbc::odbc(),
+  Driver   = "SQL Server",
+  Server   = "CONGO-H\\H",
+  Database = "uw_rep_cdrv2shim_prod",
+  trusted_connection = "yes"
+  )
+
+hdc_rep_staging_prod <- DBI::dbConnect(
+  odbc::odbc(),
+  Driver   = "SQL Server",
+  Server   = "CONGO-H\\H",
+  Database = "hdc_rep_staging_prod",
+  trusted_connection = "yes"
+  )
+```
+
+## Define cohort
+
+<!-- Use the inclusion and exclusion criteria in the data plan to find the 
+      cohort of patients -->
+      
+<!-- Choose your way of writing a database query: 
+      https://solutions.posit.co/connections/db/getting-started/database-queries/ -->
+      
+```{sql cohort-selection, connection=, output.var="cohort"}
+
+```
+
+## Construct datasets
+
+```{sql encounters, connection=, output.var="encounters"}
+
+```
+
+## Write to `data/`
+
+```{r write-csvs}
+datasets <- c(
+  "cohort",
+  "encounters"
+)
+
+save_csv <- function(df) {
+  write_csv(get(df), here("data", paste0(df, ".csv")), na = "")
+  }
+
+purrr::walk(datasets, save_csv)
+```
+
+
+
+
