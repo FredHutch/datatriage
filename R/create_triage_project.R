@@ -1,12 +1,14 @@
 
-#' Create Data Triage Project
+#' Create a data triage project
 #'
 #' @param path where to create the project
 #'
-#' @return
+#' Use: LastFirst_ID
+#'
+#' @return creates a new R project in a new R session
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{create_triage_project("~/Documents/SimpsonLisa_RC987")}
 create_triage_project <- function(path) {
 
   # create a project
@@ -36,5 +38,10 @@ create_triage_project <- function(path) {
     save_as = "code/data_report.qmd",
     package = "datatriage"
   )
+
+  # ignore data files
+  usethis::use_git_ignore("data/*")
+  usethis::use_git_ignore(glue::glue("{repo_name}_data_shared/*"))
+
 
 }

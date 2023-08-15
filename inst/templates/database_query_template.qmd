@@ -3,6 +3,7 @@ title: "Database query for: [request name and ID]"
 author: "Your name here"
 date: "`r Sys.Date()`"
 format: html
+embed-resources: true
 editor: source
 ---
 
@@ -55,13 +56,13 @@ hdc_rep_staging_prod <- DBI::dbConnect(
 <!-- Choose your way of writing a database query: 
       https://solutions.posit.co/connections/db/getting-started/database-queries/ -->
       
-```{sql cohort-selection, connection=, output.var="cohort"}
+```{sql, cohort-selection, connection=, output.var="cohort"}
 
 ```
 
 ## Construct datasets
 
-```{sql encounters, connection=, output.var="encounters"}
+```{sql, encounters, connection=, output.var="encounters"}
 
 ```
 

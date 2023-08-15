@@ -2,13 +2,21 @@
 % Please edit documentation in R/create_triage_project.R
 \name{create_triage_project}
 \alias{create_triage_project}
-\title{Create Data Triage Project}
+\title{Create a data triage project}
 \usage{
 create_triage_project(path)
 }
 \arguments{
-\item{path}{where to create the project}
+\item{path}{where to create the project
+
+Use: LastFirst_ID}
+}
+\value{
+creates a new R project in a new R session
 }
 \description{
-Create Data Triage Project
+Create a data triage project
+}
+\examples{
+\dontrun{create_triage_project("~/Documents/SimpsonLisa_RC987")}
 }
