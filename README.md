@@ -14,7 +14,7 @@ data requests.
 You can install the development version of datatriage like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+remotes::install_github("fhdsl/datatriage")
 ```
 
 ## Workflow
@@ -34,15 +34,15 @@ You can install the development version of datatriage like so:
   - `compliance_checklist.docx`
   - `data_plan.docx`
 
-- Begin query using `query_template.md`
-
-- Summarize results in `data_report_template.md`
-
-- Code review
+- Begin query using `query_template.qmd`
 
 - Write results to `data/`
 
-- Copy `data_report.md`, `query_template.md`, and `data/` to
+- Summarize results in `data_report_template.qmd`
+
+- Code review
+
+- Copy `data_report.html`, `query_template.html`, and `data/` to
   `reponame_data_shared/`
 
 - Manage file permissions
