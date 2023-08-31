@@ -7,7 +7,7 @@ embed-resources: true
 editor: source
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 library(tidyverse)
 library(readr)
 library(here)
