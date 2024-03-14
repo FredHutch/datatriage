@@ -7,10 +7,15 @@ embed-resources: true
 editor: source
 ---
 
+<!-- To install the DaSL Quarto theme: 
+      quarto install extension fhdsl/dasl-quarto 
+      Then change format to `dasl-html` -->
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(readr)
 library(here)
+library(glue)
 ```
 
 ```{r connections}
@@ -53,17 +58,42 @@ hdc_rep_staging_prod <- DBI::dbConnect(
 <!-- Use the inclusion and exclusion criteria in the data plan to find the 
       cohort of patients -->
       
-<!-- Choose your way of writing a database query: 
-      https://solutions.posit.co/connections/db/getting-started/database-queries/ -->
-      
 ```{sql, cohort-selection, connection=, output.var="cohort"}
 
 ```
 
 ## Construct datasets
 
+<!-- Create data sets for the identified cohort -->
+
 ```{sql, encounters, connection=, output.var="encounters"}
 
+```
+
+```{r cohort-characteristics}
+cohort_ids < paste0(
+  "'",
+  paste0(unique(cohort$PatientMrnUwmc), collapse = "', '"),
+  "'"
+  )
+
+query <- glue("
+  select
+    PatientMrnUwmc,
+    Sex,
+    GenderIdentity,
+    BirthDateDurableKey,
+    Status,
+    DeathDate,
+    Races,
+    Ethnicity
+  from
+    pipeline.PatientDim
+  where 
+    PatientMrnUwmc in ({cohort_ids})
+")
+
+cohort_characteristics <- as_tibble(DBI::dbGetQuery(hidra, query)) 
 ```
 
 ## Write to `data/`
