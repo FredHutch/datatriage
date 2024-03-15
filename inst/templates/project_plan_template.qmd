@@ -1,0 +1,40 @@
+---
+title: "Translational Analytics Project Plan"
+author: "Your name here"
+date: "`r Sys.Date()`"
+format: html
+embed-resources: true
+editor: source
+---
+
+<!-- To install the DaSL Quarto theme: 
+      quarto install extension fhdsl/dasl-quarto 
+      Then change format to `dasl-html` -->
+
+## Overview
+
+From REDCap:
+- Project title
+- Project description
+
+<!-- Description of the deliverable type -->
+
+## Patient Population
+
+<!-- Inclusion/exclusion criteria -->
+
+
+## Product Description
+
+<!-- Description of the datasets, analysis, etc. -->
+
+## Data Governance
+
+From REDCap:
+- Dataset PHI level
+- Consent
+- IRB number
+
+## Timeline
+
+<!-- Estimated delivery timeline -->
