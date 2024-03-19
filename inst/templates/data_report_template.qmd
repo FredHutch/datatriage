@@ -8,6 +8,10 @@ echo: false
 editor: source
 ---
 
+<!-- To install the DaSL Quarto theme: 
+      quarto install extension fhdsl/dasl-quarto 
+      Then change format to `dasl-html` -->
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(readr)
@@ -36,12 +40,6 @@ data_files <- map(files_to_read, .f = function(x) read_csv(here("data", x))) %>%
 <!-- Describe datasets included. -->
 
 
-#### The Data Science Lab
 
-This report was written at the FHCC Data Science Lab.
-
-* Visit our [website](https://hutchdatascience.org).
-* Subscribe to our [newsletter](https://fhdata.substack.com).
-* Join us on [Slack](https://hutchdatascience.org/contact/). Be sure to join the #clinical-data Slack channel!
 
 
