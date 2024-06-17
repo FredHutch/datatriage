@@ -6,8 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of datatriage is to automate tasks that are part of HIDRA
-data requests.
+The goal of datatriage is to automate tasks that are part of HIDRA data
+requests.
 
 ## Installation
 
@@ -28,8 +28,6 @@ remotes::install_github("fhdsl/datatriage")
     ├── data # any data sent by the requestor
     ├── docs # any supporting docs
     └── .gitignore
-
-    
 
 - Begin query using `query_template.qmd`
 
