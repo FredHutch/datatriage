@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of datatriage is to automate tasks that are part of clinical
+The goal of datatriage is to automate tasks that are part of HIDRA
 data requests.
 
 ## Installation
@@ -23,26 +23,25 @@ remotes::install_github("fhdsl/datatriage")
 
 <!-- -->
 
-    ├── reponame_data_shared
-    ├── code
-    ├── data
-    ├── docs
+    ├── reponame_data_shared # data to share with requestor
+    ├── code # data set development code
+    ├── data # any data sent by the requestor
+    ├── docs # any supporting docs
     └── .gitignore
 
-- Fill out documents:
-
-  - `compliance_checklist.docx`
-  - `data_plan.docx`
+    
 
 - Begin query using `query_template.qmd`
 
-- Write results to `data/`
+- Write data sets to `reponame_data_shared/` using the {pins} package.
+
+- Code review
 
 - Summarize results in `data_report_template.qmd`
 
 - Code review
 
-- Copy `data_report.html`, `query_template.html`, and `data/` to
+- Copy `data_report.html`, `query_template.html` to
   `reponame_data_shared/`
 
 - Manage file permissions
