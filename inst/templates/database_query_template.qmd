@@ -71,7 +71,7 @@ hdc_rep_staging_prod <- DBI::dbConnect(
 ```
 
 ```{r cohort-characteristics}
-cohort_ids < paste0(
+cohort_ids <- paste0(
   "'",
   paste0(unique(cohort$PatientMrnUwmc), collapse = "', '"),
   "'"
