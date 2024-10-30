@@ -7,7 +7,10 @@
 <!-- badges: end -->
 
 The goal of datatriage is to automate tasks that are part of HIDRA data
-requests.
+requests. For more information about HIDRA, see 
+[Fred Hutch CenterNet](https://centernet.fredhutch.org/u/data-science-lab/patient-data.html)
+and the 
+[Biomedical Data Science Wiki page](https://sciwiki.fredhutch.org/datascience/patient-data/).
 
 ## Installation
 
