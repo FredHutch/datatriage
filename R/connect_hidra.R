@@ -1,15 +1,18 @@
 #' Connect to the HIDRA database
 #'
+#' Requires [ODBC Driver 17 for SQL Server](https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver16)
+#' if on macOS.
+#'
 #' @param system 'mac' or 'windows'
 #'
 #' @return Creates a database connection
 #' @export
 #'
-#' @examples  \dontrun{connect_hidra("mac")}
+#' @examples  \dontrun{con <- connect_hidra("mac")}
 connect_hidra <- function(system = "mac") {
 
   if (system == "mac" | system == "Mac") {
-    driver <- "ODBC Driver 18 for SQL Server"
+    driver <- "ODBC Driver 17 for SQL Server"
   } else if (system == "windows" | system == "Windows") {
     driver <- "SQL Server"
   } else {

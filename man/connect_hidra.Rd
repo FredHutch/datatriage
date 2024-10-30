@@ -13,8 +13,9 @@ connect_hidra(system = "mac")
 Creates a database connection
 }
 \description{
-Connect to the HIDRA database
+Requires \href{https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver16}{ODBC Driver 17 for SQL Server}
+if on macOS.
 }
 \examples{
- \dontrun{connect_hidra("mac")}
+ \dontrun{con <- connect_hidra("mac")}
 }
