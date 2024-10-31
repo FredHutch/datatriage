@@ -16,41 +16,12 @@ library(tidyverse)
 library(readr)
 library(here)
 library(glue)
+library(datatriage)
 ```
 
 ```{r connections}
-
-caisis <- DBI::dbConnect(
-  odbc::odbc(),
-  Driver   = "SQL Server", # or use "ODBC Driver 18 for SQL Server" for mac
-  Server   = "CONGO-H\\H",
-  Database = "CaisisProd",
-  Trusted_Connection = "yes"
-  )
-
-hidra <- DBI::dbConnect(
-  odbc::odbc(),
-  Driver   = "SQL Server",
-  Server   = "CONGO-H\\H",
-  Database = "ccod_rep_prod",
-  trusted_connection = "yes"
-  )
-
-amalga <- DBI::dbConnect(
-  odbc::odbc(),
-  Driver   = "SQL Server",
-  Server   = "CONGO-H\\H",
-  Database = "uw_rep_cdrv2shim_prod",
-  trusted_connection = "yes"
-  )
-
-hdc_rep_staging_prod <- DBI::dbConnect(
-  odbc::odbc(),
-  Driver   = "SQL Server",
-  Server   = "CONGO-H\\H",
-  Database = "hdc_rep_staging_prod",
-  trusted_connection = "yes"
-  )
+# connect to the HIDRA database
+hidra <- connect_hidra()
 ```
 
 ## Define cohort
@@ -58,8 +29,14 @@ hdc_rep_staging_prod <- DBI::dbConnect(
 <!-- Use the inclusion and exclusion criteria in the data plan to find the 
       cohort of patients -->
       
-```{sql, cohort-selection, connection=, output.var="cohort"}
+```{sql cohort-selection, connection=, output.var="cohort"}
 
+```
+
+
+```{r cohort-ids}
+# create a vector with parameters for a SQL query
+cohort_mrns <- glue::glue_sql("{cohort$PatientMrnUwmc}", .con = hidra)
 ```
 
 ## Construct datasets
@@ -68,33 +45,18 @@ hdc_rep_staging_prod <- DBI::dbConnect(
 
 ```{sql, encounters, connection=, output.var="encounters"}
 
+SELECT TOP 100
+  pt.PatientMrnUwmc,
+  visits.*
+FROM 
+  PatientDim pt
+INNER JOIN 
+  VisitFact visits
+  ON pt.PatientDurableKey = visits.PatientDurableKey
+WHERE 
+  pt.PatientMrnUwmc IN (?cohort_mrns)
 ```
 
-```{r cohort-characteristics}
-cohort_ids <- paste0(
-  "'",
-  paste0(unique(cohort$PatientMrnUwmc), collapse = "', '"),
-  "'"
-  )
-
-query <- glue("
-  select
-    PatientMrnUwmc,
-    Sex,
-    GenderIdentity,
-    BirthDateDurableKey,
-    Status,
-    DeathDate,
-    Races,
-    Ethnicity
-  from
-    pipeline.PatientDim
-  where 
-    PatientMrnUwmc in ({cohort_ids})
-")
-
-cohort_characteristics <- as_tibble(DBI::dbGetQuery(hidra, query)) 
-```
 
 ## Write to `data/`
 
