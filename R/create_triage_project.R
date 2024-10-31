@@ -39,6 +39,13 @@ create_triage_project <- function(path) {
     package = "datatriage"
   )
 
+  usethis::use_template(
+    template = "readme_template.md",
+    save_as = "README.md",
+    data = list(title = repo_name),
+    package = "datatriage"
+  )
+
   # ignore data files
   usethis::use_git_ignore("data/*")
   usethis::use_git_ignore(glue::glue("{repo_name}_data_shared/*"))
