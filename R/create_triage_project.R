@@ -49,7 +49,7 @@ create_triage_project <- function(path) {
   # get quarto extension for templates
   quarto::quarto_add_extension("fhdsl/dasl-quarto", no_prompt = TRUE)
   fs::dir_copy(path = "_extensions", new_path = "code/_extensions")
-  #fs::dir_delete("_extensions")
+  fs::dir_delete("_extensions")
 
   # ignore data files
   usethis::use_git_ignore("data/*")
