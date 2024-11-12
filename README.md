@@ -49,9 +49,9 @@ usethis::use_github(organisation = "FredHutch", private = TRUE)
 - Use `data_report.qmd` for create an overview and EDA of the data that will be 
 shared.
 
-- Write data sets to `reponame_data_shared/`.
+- Write data sets to `reponame_data_shared/reponame_data_shared_YYYY-MM-DD/`.
 
-- Summarize results in `data_report_template.qmd`.
+- Summarize results using `data_report_template.qmd`.
 
 - Open a PR for the data report. 
 
